@@ -62,11 +62,17 @@ class ValueLayoutBuilder<T> extends ConstrainedLayoutBuilder<BoxValueConstraints
   ValueLayoutWidgetBuilder<T> get builder => super.builder;
 
   @override
-  _RenderValueLayoutBuilder<T> createRenderObject(BuildContext context) => _RenderValueLayoutBuilder<T>();
+  RenderAbstractLayoutBuilderMixin<BoxValueConstraints<T>, RenderObject> createRenderObject(BuildContext context) {
+    // TODO: implement createRenderObject
+    throw UnimplementedError();
+  }
+
+  // @override
+  // _RenderValueLayoutBuilder<T> createRenderObject(BuildContext context) => _RenderValueLayoutBuilder<T>();
 }
 
 class _RenderValueLayoutBuilder<T> extends RenderBox
-    with RenderObjectWithChildMixin<RenderBox>, RenderConstrainedLayoutBuilder<BoxValueConstraints<T>, RenderBox> {
+    with RenderObjectWithChildMixin<RenderBox> {
   @override
   double computeMinIntrinsicWidth(double height) {
     assert(_debugThrowIfNotCheckingIntrinsics());
@@ -94,7 +100,7 @@ class _RenderValueLayoutBuilder<T> extends RenderBox
   @override
   void performLayout() {
     final constraints = this.constraints;
-    rebuildIfNecessary();
+    // rebuildIfNecessary();
     if (child != null) {
       child!.layout(constraints, parentUsesSize: true);
       size = constraints.constrain(child!.size);
@@ -126,5 +132,15 @@ class _RenderValueLayoutBuilder<T> extends RenderBox
     }());
 
     return true;
+  }
+
+  @override
+  void runLayoutCallback() {
+    // TODO: implement runLayoutCallback
+  }
+
+  @override
+  void scheduleLayoutCallback() {
+    // TODO: implement scheduleLayoutCallback
   }
 }
